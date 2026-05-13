@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DWDM Exam Prep – Aman</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #232636;
+    --border: #2e3248;
+    --accent: #7c6af7;
+    --accent2: #56cfe1;
+    --accent3: #ff6b6b;
+    --accent4: #06d6a0;
+    --text: #e2e4f0;
+    --muted: #8b8fa8;
+    --yellow: #ffd166;
+    --orange: #f77f00;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 15px; line-height: 1.7; }
+
+  /* NAV */
+  nav { position: sticky; top: 0; z-index: 100; background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 1.5rem; display: flex; align-items: center; gap: 0.5rem; overflow-x: auto; white-space: nowrap; height: 52px; }
+  nav a { color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 500; padding: 6px 12px; border-radius: 6px; transition: all .2s; flex-shrink: 0; }
+  nav a:hover, nav a.active { background: var(--accent); color: #fff; }
+  .nav-brand { color: var(--accent); font-weight: 700; font-size: 15px; margin-right: 1rem; flex-shrink: 0; }
+
+  /* HERO */
+  .hero { background: linear-gradient(135deg, #1a1d27 0%, #0f1117 100%); border-bottom: 1px solid var(--border); padding: 2.5rem 2rem 2rem; text-align: center; }
+  .hero h1 { font-size: 2rem; font-weight: 800; background: linear-gradient(90deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .hero p { color: var(--muted); margin-top: 0.5rem; font-size: 14px; }
+  .badges { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem; }
+  .badge { background: var(--surface2); border: 1px solid var(--border); border-radius: 20px; padding: 4px 14px; font-size: 12px; color: var(--muted); }
+
+  /* LAYOUT */
+  .container { max-width: 1000px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+  section { margin-bottom: 3rem; scroll-margin-top: 60px; }
+
+  /* HEADINGS */
+  h2 { font-size: 1.5rem; font-weight: 700; color: var(--accent2); margin-bottom: 1.2rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--border); display: flex; align-items: center; gap: 0.5rem; }
+  h3 { font-size: 1.15rem; font-weight: 700; color: var(--yellow); margin: 1.5rem 0 0.7rem; }
+  h4 { font-size: 1rem; font-weight: 600; color: var(--accent); margin: 1rem 0 0.4rem; }
+
+  /* CARDS */
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 1rem; }
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 1rem; }
+
+  /* STEPS */
+  .steps { counter-reset: step; }
+  .step { counter-increment: step; display: flex; gap: 1rem; margin-bottom: 1rem; align-items: flex-start; }
+  .step::before { content: counter(step); background: var(--accent); color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex-shrink: 0; margin-top: 2px; }
+  .step-content { flex: 1; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 0.9rem 1.1rem; }
+  .step-content strong { color: var(--accent2); display: block; margin-bottom: 0.3rem; }
+
+  /* ORANGE UI DIAGRAM */
+  .orange-flow { display: flex; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin: 0.8rem 0; }
+  .obox { background: linear-gradient(135deg, #f77f00, #e85d04); color: white; border-radius: 8px; padding: 6px 14px; font-size: 13px; font-weight: 600; white-space: nowrap; box-shadow: 0 2px 8px rgba(247,127,0,0.3); }
+  .obox.blue { background: linear-gradient(135deg, #3a86ff, #2667cc); box-shadow: 0 2px 8px rgba(58,134,255,0.3); }
+  .obox.green { background: linear-gradient(135deg, #06d6a0, #05a37a); box-shadow: 0 2px 8px rgba(6,214,160,0.3); }
+  .obox.purple { background: linear-gradient(135deg, #7c6af7, #5a52c7); box-shadow: 0 2px 8px rgba(124,106,247,0.3); }
+  .obox.red { background: linear-gradient(135deg, #ef233c, #c1121f); box-shadow: 0 2px 8px rgba(239,35,60,0.3); }
+  .arrow { color: var(--muted); font-size: 18px; }
+
+  /* TABLE */
+  table { width: 100%; border-collapse: collapse; margin: 0.8rem 0; font-size: 14px; }
+  th { background: var(--surface2); color: var(--accent2); padding: 10px 14px; text-align: left; font-weight: 600; border: 1px solid var(--border); }
+  td { padding: 9px 14px; border: 1px solid var(--border); color: var(--text); vertical-align: top; }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+
+  /* FORMULA */
+  .formula { background: var(--surface2); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 0.8rem 1.2rem; margin: 0.7rem 0; font-family: 'Courier New', monospace; font-size: 14px; color: var(--accent2); }
+
+  /* NOTE / TIP / WARN */
+  .note { background: rgba(124,106,247,0.1); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 0.8rem 1.1rem; margin: 0.8rem 0; font-size: 14px; }
+  .tip { background: rgba(6,214,160,0.1); border-left: 3px solid var(--accent4); border-radius: 0 8px 8px 0; padding: 0.8rem 1.1rem; margin: 0.8rem 0; font-size: 14px; }
+  .warn { background: rgba(255,107,107,0.1); border-left: 3px solid var(--accent3); border-radius: 0 8px 8px 0; padding: 0.8rem 1.1rem; margin: 0.8rem 0; font-size: 14px; }
+  .note strong, .tip strong, .warn strong { display: block; margin-bottom: 0.2rem; }
+
+  /* Q&A */
+  .qa-block { margin-bottom: 1.5rem; }
+  .question { background: var(--surface2); border-radius: 10px 10px 0 0; padding: 0.9rem 1.2rem; border: 1px solid var(--border); border-bottom: none; }
+  .question span { color: var(--accent3); font-weight: 700; margin-right: 0.5rem; }
+  .answer { background: var(--surface); border-radius: 0 0 10px 10px; padding: 0.9rem 1.2rem; border: 1px solid var(--border); font-size: 14px; line-height: 1.7; }
+
+  /* TAG */
+  .tag { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; margin-right: 4px; }
+  .tag-unit1 { background: rgba(124,106,247,0.2); color: var(--accent); }
+  .tag-unit2 { background: rgba(86,207,225,0.2); color: var(--accent2); }
+  .tag-unit3 { background: rgba(6,214,160,0.2); color: var(--accent4); }
+  .tag-unit4 { background: rgba(255,107,107,0.2); color: var(--accent3); }
+  .tag-practical { background: rgba(255,209,102,0.2); color: var(--yellow); }
+
+  /* COMPARISON TABLE */
+  .best { color: var(--accent4); font-weight: 700; }
+  .worst { color: var(--accent3); }
+  .mid { color: var(--yellow); }
+
+  /* METRIC BOXES */
+  .metric-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.8rem; margin: 1rem 0; }
+  .metric-box { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 0.9rem; text-align: center; }
+  .metric-box .val { font-size: 1.4rem; font-weight: 800; color: var(--accent); }
+  .metric-box .label { font-size: 12px; color: var(--muted); margin-top: 0.2rem; }
+
+  /* COLLAPSIBLE */
+  details { margin-bottom: 0.8rem; }
+  summary { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem 1.1rem; cursor: pointer; font-weight: 600; color: var(--accent2); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  summary::after { content: '▼'; font-size: 12px; color: var(--muted); transition: transform .2s; }
+  details[open] summary::after { transform: rotate(180deg); }
+  details[open] summary { border-radius: 8px 8px 0 0; border-bottom: none; }
+  .details-body { background: var(--surface); border: 1px solid var(--border); border-top: none; border-radius: 0 0 8px 8px; padding: 1rem 1.2rem; font-size: 14px; }
+
+  p { margin-bottom: 0.6rem; }
+  ul, ol { padding-left: 1.3rem; margin-bottom: 0.6rem; }
+  li { margin-bottom: 0.3rem; }
+  code { background: var(--surface2); padding: 1px 6px; border-radius: 4px; font-family: monospace; font-size: 13px; color: var(--accent2); }
+
+  .section-label { display: inline-block; background: var(--accent); color: white; font-size: 11px; font-weight: 700; padding: 2px 10px; border-radius: 20px; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-brand">🎓 DWDM Prep</span>
+  <a href="#practical">🔧 Practical</a>
+  <a href="#association">🔗 Association</a>
+  <a href="#models">🤖 Models</a>
+  <a href="#metrics">📊 Metrics</a>
+  <a href="#churn">📉 Churn</a>
+  <a href="#concepts">💡 Concepts</a>
+  <a href="#viva1">📚 Viva U1</a>
+  <a href="#viva2">📚 Viva U2</a>
+  <a href="#viva3">📚 Viva U3</a>
+  <a href="#viva4">📚 Viva U4</a>
+  <a href="#vivap">🛠️ Viva Practical</a>
+</nav>
+
+<div class="hero">
+  <h1>DWDM Complete Exam Prep</h1>
+  <p>Practical Guide + Concepts + Full Viva Q&A · Good luck, Aman! 🚀</p>
+  <div class="badges">
+    <span class="badge">Orange Tool</span>
+    <span class="badge">Apriori &amp; FP-Growth</span>
+    <span class="badge">Decision Tree</span>
+    <span class="badge">Naive Bayes</span>
+    <span class="badge">Random Forest</span>
+    <span class="badge">Neural Network</span>
+    <span class="badge">Churn Prediction</span>
+    <span class="badge">All 4 Units</span>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ============================================================ -->
+<!-- SECTION 1: PRACTICAL - ORANGE TOOL OVERVIEW -->
+<!-- ============================================================ -->
+<section id="practical">
+  <h2>🔧 Orange Tool – Practical Guide</h2>
+
+  <div class="note">
+    <strong>What is Orange?</strong>
+    Orange is a visual, drag-and-drop data science tool. You connect widgets (boxes) with lines to build a data pipeline. No coding required. Each widget does one job — load data, clean it, build a model, evaluate it.
+  </div>
+
+  <h3>Key Widgets You Must Know</h3>
+  <div class="card-grid">
+    <div class="card">
+      <h4>📂 Data Widgets</h4>
+      <ul>
+        <li><code>File</code> – Load CSV/Excel dataset</li>
+        <li><code>Data Table</code> – View raw data</li>
+        <li><code>Data Info</code> – See column types, missing values</li>
+        <li><code>Select Columns</code> – Choose features</li>
+        <li><code>Edit Domain</code> – Change column roles (target, feature, meta)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>⚙️ Preprocessing Widgets</h4>
+      <ul>
+        <li><code>Preprocess</code> – Normalize, impute missing, encode</li>
+        <li><code>Impute</code> – Fill missing values</li>
+        <li><code>Discretize</code> – Bin continuous → categories</li>
+        <li><code>Continuize</code> – Encode categorical → numeric</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>🤖 Modeling Widgets</h4>
+      <ul>
+        <li><code>Tree</code> – Decision Tree</li>
+        <li><code>Naive Bayes</code> – Naive Bayes classifier</li>
+        <li><code>Random Forest</code> – Ensemble of trees</li>
+        <li><code>Neural Network</code> – MLP classifier</li>
+        <li><code>Test and Score</code> – Cross-validation + metrics</li>
+        <li><code>Confusion Matrix</code> – Detailed results</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>🔗 Association Widgets</h4>
+      <ul>
+        <li><code>Associate</code> widget (FP-Growth inside Orange)</li>
+        <li><code>Frequent Itemsets</code> – View frequent sets</li>
+        <li><code>Association Rules</code> – View rules with support/confidence/lift</li>
+        <li>Note: Orange uses FP-Growth internally; Apriori needs add-on or manual steps</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>General Workflow (Always Follow This)</h3>
+  <div class="steps">
+    <div class="step"><div class="step-content"><strong>Load Data</strong>File widget → connect to Data Table to verify the data loaded correctly. Check columns and target variable.</div></div>
+    <div class="step"><div class="step-content"><strong>Set Target Variable</strong>Use Edit Domain or Select Columns → mark the prediction column (e.g., "Churn") as <em>Target</em>. Mark irrelevant IDs as <em>Meta</em>.</div></div>
+    <div class="step"><div class="step-content"><strong>Preprocess</strong>Add Preprocess widget → Normalize features, impute missing values (mean/most frequent), encode categoricals.</div></div>
+    <div class="step"><div class="step-content"><strong>Build Models</strong>Add model widgets (Tree, Naive Bayes, Random Forest, Neural Network). Connect each to the preprocessed data or directly to Test &amp; Score.</div></div>
+    <div class="step"><div class="step-content"><strong>Test &amp; Score</strong>Connect all models + preprocessed data to Test and Score → choose Cross Validation (k=10). View AUC, CA, F1, Precision, Recall.</div></div>
+    <div class="step"><div class="step-content"><strong>Analyze Results</strong>Connect Confusion Matrix to Test and Score to see TP/FP/TN/FN. Connect ROC Analysis for curve comparison.</div></div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 2: ASSOCIATION MINING -->
+<!-- ============================================================ -->
+<section id="association">
+  <h2>🔗 Association Rule Mining in Orange</h2>
+
+  <h3>Core Concepts First</h3>
+  <div class="card-grid">
+    <div class="card">
+      <h4>Support</h4>
+      <div class="formula">Support(A→B) = freq(A∪B) / N</div>
+      <p>How often the itemset appears in the dataset. A support of 0.3 means 30% of transactions contain the items.</p>
+      <p><strong>Why it matters:</strong> Low support = rare pattern, might be noise.</p>
+    </div>
+    <div class="card">
+      <h4>Confidence</h4>
+      <div class="formula">Confidence(A→B) = Support(A∪B) / Support(A)</div>
+      <p>Given A is bought, probability that B is also bought. Confidence of 0.8 means 80% of the time when A is bought, B is also bought.</p>
+    </div>
+    <div class="card">
+      <h4>Lift</h4>
+      <div class="formula">Lift(A→B) = Confidence(A→B) / Support(B)</div>
+      <p><strong>Lift &gt; 1:</strong> Positive association (A and B appear together more than by chance)<br>
+      <strong>Lift = 1:</strong> Independent<br>
+      <strong>Lift &lt; 1:</strong> Negative association</p>
+      <div class="tip"><strong>💡 Best metric!</strong> Always use Lift to find truly interesting rules. High confidence can be misleading if B is very frequent.</div>
+    </div>
+  </div>
+
+  <h3>Apriori Algorithm</h3>
+  <div class="card">
+    <p>Apriori uses a level-by-level (BFS) approach. It generates frequent itemsets by iteratively extending them from size 1 to size k.</p>
+    <h4>Key Property – Antimonotone (Apriori Property)</h4>
+    <p>If an itemset is infrequent, ALL its supersets are also infrequent. This allows pruning.</p>
+    <h4>Steps:</h4>
+    <ol>
+      <li>Find all frequent 1-itemsets (single items ≥ min_support)</li>
+      <li>Generate candidate 2-itemsets by joining frequent 1-itemsets</li>
+      <li>Prune candidates if any subset is infrequent</li>
+      <li>Scan DB to count and filter by min_support</li>
+      <li>Repeat until no new frequent itemsets</li>
+      <li>Generate rules from frequent itemsets with min_confidence check</li>
+    </ol>
+    <div class="warn"><strong>⚠️ Weakness:</strong> Multiple DB scans + huge candidate generation makes it slow on large datasets.</div>
+  </div>
+
+  <h3>FP-Growth Algorithm</h3>
+  <div class="card">
+    <p>FP-Growth avoids candidate generation. It compresses the database into an FP-Tree (Frequent Pattern Tree) structure.</p>
+    <h4>Steps:</h4>
+    <ol>
+      <li>Scan DB once → count item frequencies → discard infrequent items → sort frequent items by frequency descending</li>
+      <li>Scan DB second time → insert transactions into the FP-Tree as branches</li>
+      <li>For each frequent item (from least to most frequent), extract its conditional pattern base</li>
+      <li>Build conditional FP-Tree for each item</li>
+      <li>Mine frequent patterns recursively from conditional trees</li>
+    </ol>
+    <div class="tip"><strong>✅ Why FP-Growth is better than Apriori:</strong> Only 2 DB scans, no candidate generation, uses compact tree structure. Much faster on large datasets.</div>
+    <table>
+      <tr><th>Feature</th><th>Apriori</th><th>FP-Growth</th></tr>
+      <tr><td>DB Scans</td><td class="worst">Multiple (k+1)</td><td class="best">Only 2</td></tr>
+      <tr><td>Candidate Generation</td><td class="worst">Yes (large)</td><td class="best">No</td></tr>
+      <tr><td>Memory</td><td class="mid">Less (no tree)</td><td class="worst">More (FP-Tree)</td></tr>
+      <tr><td>Speed on large data</td><td class="worst">Slow</td><td class="best">Fast</td></tr>
+      <tr><td>Implementation</td><td class="best">Simple</td><td class="worst">Complex</td></tr>
+    </table>
+  </div>
+
+  <h3>Orange: Association Mining Steps</h3>
+  <div class="orange-flow">
+    <div class="obox blue">File<br><small>(basket/transaction data)</small></div>
+    <span class="arrow">→</span>
+    <div class="obox">Edit Domain<br><small>(mark items)</small></div>
+    <span class="arrow">→</span>
+    <div class="obox purple">Associate<br><small>(FP-Growth)</small></div>
+    <span class="arrow">→</span>
+    <div class="obox green">Frequent Itemsets</div>
+    <span class="arrow">→</span>
+    <div class="obox green">Association Rules</div>
+  </div>
+
+  <div class="steps">
+    <div class="step"><div class="step-content"><strong>Load transaction data</strong>File widget → use a dataset with items (e.g., market basket data, or use Orange's built-in "zoo" or create basket data). Each row = one transaction.</div></div>
+    <div class="step"><div class="step-content"><strong>Open Associate widget</strong>Go to: <code>Associate → Associate</code> in the widget panel. Connect File → Associate.</div></div>
+    <div class="step"><div class="step-content"><strong>Set min Support &amp; Confidence</strong>In Associate widget settings: set Min Support (e.g., 0.1 = 10%) and Min Confidence (e.g., 0.8 = 80%). Click Find Rules.</div></div>
+    <div class="step"><div class="step-content"><strong>View Frequent Itemsets</strong>Connect Associate → Frequent Itemsets widget → see all item combinations meeting min support.</div></div>
+    <div class="step"><div class="step-content"><strong>View Association Rules</strong>Connect Associate → Association Rules widget → see all rules with Support, Confidence, Lift columns. Sort by Lift descending to find best rules.</div></div>
+    <div class="step"><div class="step-content"><strong>Interpret results</strong>Look for rules where: Support is reasonable (not too rare), Confidence ≥ 0.7, and Lift &gt; 1 (ideally &gt; 2). Example: {bread, butter} → {milk} with Lift=2.5 means customers who buy bread &amp; butter are 2.5× more likely to buy milk than average.</div></div>
+  </div>
+
+  <div class="note">
+    <strong>📝 Viva Answer:</strong> Orange uses FP-Growth internally in the Associate widget. If asked about Apriori, explain the concept and note that FP-Growth achieves the same result more efficiently.
+  </div>
+
+  <h3>Worked Example (Memorize for Viva)</h3>
+  <div class="card">
+    <p><strong>Transactions:</strong></p>
+    <table>
+      <tr><th>TID</th><th>Items</th></tr>
+      <tr><td>T1</td><td>Bread, Milk</td></tr>
+      <tr><td>T2</td><td>Bread, Butter, Milk</td></tr>
+      <tr><td>T3</td><td>Bread, Butter</td></tr>
+      <tr><td>T4</td><td>Butter, Milk</td></tr>
+      <tr><td>T5</td><td>Bread, Butter, Milk</td></tr>
+    </table>
+    <p style="margin-top:0.8rem"><strong>Min support = 60% (3/5 = 0.6), Min confidence = 0.7</strong></p>
+    <p>Freq 1-itemsets: Bread(4), Butter(4), Milk(4)</p>
+    <p>Freq 2-itemsets: {Bread,Butter}(3), {Bread,Milk}(3), {Butter,Milk}(3)</p>
+    <p>Freq 3-itemsets: {Bread,Butter,Milk}(2) — support=0.4, DROPPED</p>
+    <div class="formula">Rule: Bread → Butter
+Support = 3/5 = 0.60 ✓
+Confidence = 3/4 = 0.75 ✓
+Lift = 0.75 / (4/5) = 0.75/0.80 = 0.9375 (slight negative!)</div>
+    <div class="formula">Rule: Butter → Milk
+Support = 3/5 = 0.60 ✓
+Confidence = 3/4 = 0.75 ✓
+Lift = 0.75 / (4/5) = 0.9375</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 3: MODELS -->
+<!-- ============================================================ -->
+<section id="models">
+  <h2>🤖 Classification Models – Deep Dive</h2>
+
+  <!-- DECISION TREE -->
+  <h3>🌳 Decision Tree</h3>
+  <div class="card">
+    <p><strong>What it is:</strong> A tree-like model that splits data on feature values to create decision rules. Each internal node is a feature test, each leaf is a class label.</p>
+    <h4>How it works:</h4>
+    <ol>
+      <li>Start with all training data at the root</li>
+      <li>Find the best feature to split on using <strong>Information Gain</strong> (ID3) or <strong>Gini Index</strong> (CART)</li>
+      <li>Split data into subsets based on feature values</li>
+      <li>Recurse until all samples belong to one class or stopping criteria met</li>
+    </ol>
+    <h4>Key Formulas:</h4>
+    <div class="formula">Entropy(S) = -Σ p_i × log₂(p_i)
+Information Gain(A) = Entropy(S) - Σ |S_v|/|S| × Entropy(S_v)
+Gini(S) = 1 - Σ p_i²</div>
+    <div class="card-grid" style="margin-top:0.8rem">
+      <div class="card"><h4 style="color:var(--accent4)">✅ Pros</h4><ul><li>Easy to visualize &amp; explain</li><li>No feature scaling needed</li><li>Handles both numeric &amp; categorical</li><li>Fast training &amp; prediction</li></ul></div>
+      <div class="card"><h4 style="color:var(--accent3)">❌ Cons</h4><ul><li>Prone to overfitting (deep trees)</li><li>Unstable (small data change = different tree)</li><li>Biased toward features with many values</li></ul></div>
+    </div>
+    <h4>In Orange:</h4>
+    <p>Widget: <code>Tree</code> → Set Max Depth (try 5–10), Min samples in leaves. Connect to Test &amp; Score.</p>
+  </div>
+
+  <!-- NAIVE BAYES -->
+  <h3>🔢 Naive Bayes</h3>
+  <div class="card">
+    <p><strong>What it is:</strong> Probabilistic classifier based on Bayes' theorem with a "naive" assumption that all features are independent given the class.</p>
+    <div class="formula">P(C|X) = P(X|C) × P(C) / P(X)
+Predicted class = argmax P(C) × Π P(x_i|C)</div>
+    <h4>How it works:</h4>
+    <ol>
+      <li>Calculate prior probability P(C) for each class from training data</li>
+      <li>Calculate likelihood P(x_i|C) for each feature given each class</li>
+      <li>For a new instance, multiply all likelihoods × prior for each class</li>
+      <li>Assign the class with the highest posterior probability</li>
+    </ol>
+    <div class="note"><strong>Laplace Smoothing:</strong> Add 1 to all counts to avoid zero probability for unseen features: P(x_i|C) = (count(x_i,C)+1) / (count(C)+k) where k = number of feature values.</div>
+    <div class="card-grid" style="margin-top:0.8rem">
+      <div class="card"><h4 style="color:var(--accent4)">✅ Pros</h4><ul><li>Very fast, works well with small data</li><li>Excellent for text classification (spam)</li><li>Handles high dimensions well</li><li>Needs less training data</li></ul></div>
+      <div class="card"><h4 style="color:var(--accent3)">❌ Cons</h4><ul><li>Feature independence assumption is often wrong</li><li>Poor with correlated features</li><li>Continuous features need discretization or Gaussian NB</li></ul></div>
+    </div>
+    <h4>In Orange:</h4>
+    <p>Widget: <code>Naive Bayes</code> → No major parameters to set. Just connect to Test &amp; Score. Use <code>Discretize</code> widget first for continuous features.</p>
+  </div>
+
+  <!-- RANDOM FOREST -->
+  <h3>🌲🌲 Random Forest</h3>
+  <div class="card">
+    <p><strong>What it is:</strong> An ensemble method that builds many decision trees on random subsets of data and features, then aggregates their predictions (voting for classification).</p>
+    <h4>How it works:</h4>
+    <ol>
+      <li><strong>Bootstrap sampling:</strong> For each tree, randomly sample N rows WITH replacement from training data (bagging)</li>
+      <li><strong>Random feature subset:</strong> At each node split, only consider √m features (m = total features)</li>
+      <li>Build a full decision tree (no pruning) for each bootstrap sample</li>
+      <li><strong>Aggregation:</strong> For classification → majority vote across all trees</li>
+    </ol>
+    <div class="tip"><strong>Why better than single tree?</strong> Individual trees overfit but are diverse. Averaging diverse models reduces variance without increasing bias = lower overall error (Bias-Variance tradeoff).</div>
+    <div class="card-grid" style="margin-top:0.8rem">
+      <div class="card"><h4 style="color:var(--accent4)">✅ Pros</h4><ul><li>Highly accurate, robust to overfitting</li><li>Handles missing values &amp; outliers</li><li>Built-in feature importance</li><li>Works well out-of-the-box</li></ul></div>
+      <div class="card"><h4 style="color:var(--accent3)">❌ Cons</h4><ul><li>Slow for large datasets (many trees)</li><li>Less interpretable ("black box")</li><li>High memory usage</li></ul></div>
+    </div>
+    <h4>In Orange:</h4>
+    <p>Widget: <code>Random Forest</code> → Set Number of trees (try 100–200), Max depth, Min samples split. More trees = better but slower.</p>
+  </div>
+
+  <!-- NEURAL NETWORK -->
+  <h3>🧠 Neural Network (MLP)</h3>
+  <div class="card">
+    <p><strong>What it is:</strong> A Multi-Layer Perceptron with an input layer, hidden layers, and an output layer. Each node applies a weighted sum + activation function.</p>
+    <h4>How it works:</h4>
+    <ol>
+      <li><strong>Forward pass:</strong> Input → weighted sum at each neuron → activation function (ReLU/Sigmoid) → output</li>
+      <li><strong>Loss calculation:</strong> Compare predictions to actual labels (e.g., Cross-Entropy loss)</li>
+      <li><strong>Backpropagation:</strong> Compute gradient of loss w.r.t. each weight using chain rule</li>
+      <li><strong>Weight update:</strong> Gradient Descent: w = w - α × ∂L/∂w (α = learning rate)</li>
+      <li>Repeat for many epochs until convergence</li>
+    </ol>
+    <div class="formula">Output = activation(W·X + b)
+Sigmoid: σ(x) = 1/(1+e^(-x))
+ReLU: f(x) = max(0, x)</div>
+    <div class="card-grid" style="margin-top:0.8rem">
+      <div class="card"><h4 style="color:var(--accent4)">✅ Pros</h4><ul><li>Can learn complex non-linear patterns</li><li>Very powerful with large data</li><li>Works on images, text, tabular data</li></ul></div>
+      <div class="card"><h4 style="color:var(--accent3)">❌ Cons</h4><ul><li>Needs lots of data &amp; computation</li><li>"Black box" – not interpretable</li><li>Sensitive to feature scaling</li><li>Many hyperparameters to tune</li></ul></div>
+    </div>
+    <h4>In Orange:</h4>
+    <p>Widget: <code>Neural Network</code> → Set hidden layers (e.g., 100, 50), Activation (ReLU), Max iterations (300). <strong>Always normalize features first!</strong> Use Preprocess → Normalize.</p>
+  </div>
+
+  <!-- MODEL COMPARISON TABLE -->
+  <h3>📊 Model Comparison Summary</h3>
+  <table>
+    <tr>
+      <th>Model</th><th>Speed</th><th>Interpretability</th><th>Accuracy</th><th>Needs Scaling</th><th>Best For</th>
+    </tr>
+    <tr>
+      <td><strong>Decision Tree</strong></td>
+      <td class="best">Fast</td>
+      <td class="best">High</td>
+      <td class="mid">Moderate</td>
+      <td class="best">No</td>
+      <td>Explainable decisions, small data</td>
+    </tr>
+    <tr>
+      <td><strong>Naive Bayes</strong></td>
+      <td class="best">Fastest</td>
+      <td class="mid">Moderate</td>
+      <td class="worst">Low-Moderate</td>
+      <td class="best">No</td>
+      <td>Text classification, very small data</td>
+    </tr>
+    <tr>
+      <td><strong>Random Forest</strong></td>
+      <td class="mid">Moderate</td>
+      <td class="worst">Low</td>
+      <td class="best">High</td>
+      <td class="best">No</td>
+      <td>General purpose, tabular data</td>
+    </tr>
+    <tr>
+      <td><strong>Neural Network</strong></td>
+      <td class="worst">Slow</td>
+      <td class="worst">Lowest</td>
+      <td class="best">Highest</td>
+      <td class="worst">Yes (normalize)</td>
+      <td>Large datasets, complex patterns</td>
+    </tr>
+  </table>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 4: METRICS -->
+<!-- ============================================================ -->
+<section id="metrics">
+  <h2>📊 Evaluation Metrics – How to Pick the Best Model</h2>
+
+  <h3>The Confusion Matrix</h3>
+  <div class="card">
+    <table>
+      <tr><th></th><th>Predicted: Positive</th><th>Predicted: Negative</th></tr>
+      <tr><td><strong>Actual: Positive</strong></td><td style="color:var(--accent4)">TP (True Positive)</td><td style="color:var(--accent3)">FN (False Negative)</td></tr>
+      <tr><td><strong>Actual: Negative</strong></td><td style="color:var(--accent3)">FP (False Positive)</td><td style="color:var(--accent4)">TN (True Negative)</td></tr>
+    </table>
+    <div class="tip" style="margin-top:0.8rem"><strong>Remember with DWDM context:</strong> In Churn prediction — TP = correctly predicted churner, FN = missed churner (bad!), FP = predicted churn but didn't churn.</div>
+  </div>
+
+  <h3>Metrics Formulas</h3>
+  <div class="metric-row">
+    <div class="metric-box"><div class="val">CA</div><div class="label">Classification Accuracy = (TP+TN)/(TP+TN+FP+FN)</div></div>
+    <div class="metric-box"><div class="val">P</div><div class="label">Precision = TP/(TP+FP) — of all predicted positive, how many truly are</div></div>
+    <div class="metric-box"><div class="val">R</div><div class="label">Recall = TP/(TP+FN) — of all actual positives, how many did we catch</div></div>
+    <div class="metric-box"><div class="val">F1</div><div class="label">F1 = 2×P×R/(P+R) — harmonic mean of P and R</div></div>
+    <div class="metric-box"><div class="val">AUC</div><div class="label">Area Under ROC Curve — 1.0 = perfect, 0.5 = random</div></div>
+  </div>
+
+  <h3>How to Read Orange's Test &amp; Score Results</h3>
+  <div class="card">
+    <p>Orange shows these columns in Test &amp; Score: <code>AUC</code>, <code>CA</code>, <code>F1</code>, <code>Precision</code>, <code>Recall</code></p>
+    <h4>Decision Framework:</h4>
+    <ol>
+      <li><strong>Start with AUC</strong> – Best overall indicator. Model with highest AUC = best discriminator between classes.</li>
+      <li><strong>Check CA (Accuracy)</strong> – But beware: with imbalanced classes (e.g., 95% no-churn), accuracy can be misleading.</li>
+      <li><strong>For imbalanced data use F1</strong> – F1 balances precision and recall. Most practical for churn.</li>
+      <li><strong>Business context matters:</strong>
+        <ul>
+          <li>Missing a churner costs more → maximize <strong>Recall</strong></li>
+          <li>Calling non-churners costs money → maximize <strong>Precision</strong></li>
+          <li>Balance both → maximize <strong>F1</strong></li>
+        </ul>
+      </li>
+    </ol>
+    <div class="formula">Best Model = Highest AUC (generally)
+For churn: Highest F1 or Highest Recall
+If data is balanced: Highest CA is fine</div>
+  </div>
+
+  <h3>Cross-Validation (Used in Test &amp; Score)</h3>
+  <div class="card">
+    <p>Orange uses <strong>k-fold cross-validation</strong> (default k=10). Data is split into 10 folds → model trained on 9, tested on 1 → repeated 10 times → average score reported.</p>
+    <p><strong>Why?</strong> More reliable than a single train/test split. Reduces variance of the estimate.</p>
+  </div>
+
+  <h3>ROC Curve &amp; AUC</h3>
+  <div class="card">
+    <p>ROC = Receiver Operating Characteristic. Plots TPR (Recall) vs FPR at different classification thresholds.</p>
+    <p><strong>Perfect model:</strong> curve hugs top-left corner → AUC = 1.0</p>
+    <p><strong>Random model:</strong> diagonal line → AUC = 0.5</p>
+    <p>In Orange: Connect <code>Test &amp; Score</code> → <code>ROC Analysis</code> widget to see curves for all models overlaid. The model with the highest and leftmost curve is best.</p>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 5: CHURN PREDICTION -->
+<!-- ============================================================ -->
+<section id="churn">
+  <h2>📉 Churn Prediction – Complete Practical Walkthrough</h2>
+
+  <div class="note">
+    <strong>What is Churn?</strong> Customer churn = customers who stop using a service. Churn prediction = classify which customers are likely to leave. Typical dataset: telecom customers with features like monthly charges, tenure, contract type, etc.
+  </div>
+
+  <h3>Dataset Features (Typical Telecom Churn Dataset)</h3>
+  <div class="card">
+    <table>
+      <tr><th>Feature</th><th>Type</th><th>Role</th></tr>
+      <tr><td>CustomerID</td><td>String</td><td>Meta (ignore)</td></tr>
+      <tr><td>Gender, SeniorCitizen</td><td>Categorical</td><td>Feature</td></tr>
+      <tr><td>Tenure (months)</td><td>Numeric</td><td>Feature</td></tr>
+      <tr><td>MonthlyCharges, TotalCharges</td><td>Numeric</td><td>Feature</td></tr>
+      <tr><td>Contract, PaymentMethod</td><td>Categorical</td><td>Feature</td></tr>
+      <tr><td>InternetService, TechSupport</td><td>Categorical</td><td>Feature</td></tr>
+      <tr><td><strong>Churn</strong></td><td>Binary (Yes/No)</td><td><strong>Target ⭐</strong></td></tr>
+    </table>
+  </div>
+
+  <h3>Complete Orange Workflow for Churn Prediction</h3>
+
+  <div class="orange-flow">
+    <div class="obox blue">File<br><small>churn.csv</small></div>
+    <span class="arrow">→</span>
+    <div class="obox">Data Table<br><small>verify</small></div>
+  </div>
+  <div class="orange-flow">
+    <div class="obox blue">File</div>
+    <span class="arrow">→</span>
+    <div class="obox">Edit Domain<br><small>Churn=Target, ID=Meta</small></div>
+    <span class="arrow">→</span>
+    <div class="obox">Preprocess<br><small>Normalize + Impute</small></div>
+    <span class="arrow">→</span>
+    <div class="obox purple">Test &amp; Score<br><small>10-fold CV</small></div>
+  </div>
+  <div class="orange-flow">
+    <div class="obox">Tree</div>
+    <span class="arrow">↗</span>
+    <div style="color:var(--muted); font-size:13px">All models connect to Test &amp; Score</div>
+  </div>
+  <div class="orange-flow">
+    <div class="obox">Naive Bayes</div>
+    <span class="arrow">↗</span>
+    <div class="obox">Random Forest</div>
+    <span class="arrow">↗</span>
+    <div class="obox">Neural Network</div>
+    <span class="arrow">→</span>
+    <div class="obox purple">Test &amp; Score</div>
+    <span class="arrow">→</span>
+    <div class="obox green">Confusion Matrix</div>
+  </div>
+  <div class="orange-flow">
+    <div class="obox purple">Test &amp; Score</div>
+    <span class="arrow">→</span>
+    <div class="obox green">ROC Analysis</div>
+  </div>
+
+  <div class="steps" style="margin-top:1.2rem">
+    <div class="step"><div class="step-content"><strong>Load Dataset</strong>File → browse to churn.csv → connect to Data Table to inspect. Look for missing values (TotalCharges sometimes has blanks).</div></div>
+    <div class="step"><div class="step-content"><strong>Set Target</strong>Edit Domain → click "Churn" column → change role to Target. Set CustomerID to Meta. Click Apply.</div></div>
+    <div class="step"><div class="step-content"><strong>Preprocess</strong>Connect Edit Domain → Preprocess → Add "Normalize Features" (StandardScore or MinMax) → Add "Impute Missing Values" (Average for numeric, Most Frequent for categorical) → Apply.</div></div>
+    <div class="step"><div class="step-content"><strong>Add all 4 models</strong>Add Tree, Naive Bayes, Random Forest, Neural Network widgets. Connect Preprocess output to each model's "Data" input AND to Test &amp; Score's "Data" input.</div></div>
+    <div class="step"><div class="step-content"><strong>Connect to Test &amp; Score</strong>Connect each model widget to Test &amp; Score's "Learner" input. Set Cross Validation, k=10. Check the results table.</div></div>
+    <div class="step"><div class="step-content"><strong>Compare results</strong>Look at AUC, CA, F1 columns. Typically: Random Forest &gt; Neural Network &gt; Decision Tree &gt; Naive Bayes for churn data.</div></div>
+    <div class="step"><div class="step-content"><strong>Confusion Matrix</strong>Connect Test &amp; Score → Confusion Matrix → select each model from dropdown. Note TP, FP, TN, FN values. For churn, focus on reducing FN (missed churners).</div></div>
+    <div class="step"><div class="step-content"><strong>ROC Curve</strong>Connect Test &amp; Score → ROC Analysis → compare curves. The model with curve closest to top-left has best AUC.</div></div>
+    <div class="step"><div class="step-content"><strong>Predict on new data</strong>Connect best model (e.g., Random Forest) to Predictions widget + new data → see individual predictions with probabilities.</div></div>
+  </div>
+
+  <h3>Typical Results to Expect (Telecom Churn)</h3>
+  <table>
+    <tr><th>Model</th><th>AUC</th><th>CA</th><th>F1</th><th>Precision</th><th>Recall</th></tr>
+    <tr><td>Decision Tree</td><td>0.72</td><td>0.78</td><td>0.54</td><td>0.58</td><td>0.51</td></tr>
+    <tr><td>Naive Bayes</td><td>0.81</td><td>0.73</td><td>0.57</td><td>0.47</td><td>0.71</td></tr>
+    <tr><td>Random Forest</td><td class="best">0.84</td><td class="best">0.80</td><td class="best">0.59</td><td class="best">0.64</td><td>0.55</td></tr>
+    <tr><td>Neural Network</td><td>0.83</td><td>0.80</td><td>0.58</td><td>0.62</td><td>0.54</td></tr>
+  </table>
+  <div class="tip"><strong>Conclusion to say in viva:</strong> "Random Forest achieved the highest AUC of 0.84 and best F1 score, making it the best model for this churn prediction task. Decision Tree is most interpretable but has lower accuracy. Naive Bayes was fastest but assumes feature independence which may not hold."</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 6: CORE CONCEPTS -->
+<!-- ============================================================ -->
+<section id="concepts">
+  <h2>💡 Core Concept Cheatsheet</h2>
+
+  <h3>Data Warehouse vs Database</h3>
+  <table>
+    <tr><th>Aspect</th><th>Database (OLTP)</th><th>Data Warehouse (OLAP)</th></tr>
+    <tr><td>Purpose</td><td>Day-to-day transactions</td><td>Analysis &amp; reporting</td></tr>
+    <tr><td>Data</td><td>Current, operational</td><td>Historical, integrated</td></tr>
+    <tr><td>Design</td><td>Normalized (3NF)</td><td>Denormalized (Star/Snowflake)</td></tr>
+    <tr><td>Operations</td><td>INSERT, UPDATE, DELETE</td><td>Mostly SELECT (read-heavy)</td></tr>
+    <tr><td>Query type</td><td>Simple, fast</td><td>Complex, aggregations</td></tr>
+    <tr><td>Size</td><td>MB–GB</td><td>GB–TB</td></tr>
+    <tr><td>Users</td><td>Clerks, customers</td><td>Analysts, executives</td></tr>
+  </table>
+
+  <h3>OLAP Operations (Memorize All!)</h3>
+  <div class="card-grid">
+    <div class="card"><h4>Roll-up (Drill-up)</h4><p>Aggregates data by climbing up a concept hierarchy or reducing a dimension.<br><em>Example: Sales by City → Sales by State → Sales by Country</em></p></div>
+    <div class="card"><h4>Drill-down (Roll-down)</h4><p>Goes from higher to lower summary level, adding more detail.<br><em>Example: Sales by Year → Sales by Quarter → Sales by Month</em></p></div>
+    <div class="card"><h4>Slice</h4><p>Selects a single dimension value, creating a sub-cube.<br><em>Example: Time = Q1 (one value from Time dimension)</em></p></div>
+    <div class="card"><h4>Dice</h4><p>Selects two or more dimension values, creating a smaller sub-cube.<br><em>Example: Time = Q1 or Q2, Location = Mumbai or Delhi</em></p></div>
+    <div class="card"><h4>Pivot (Rotate)</h4><p>Rotates the data cube to provide an alternative presentation of the data.<br><em>Example: Swap rows and columns in a report</em></p></div>
+  </div>
+
+  <h3>Star vs Snowflake vs Constellation Schema</h3>
+  <table>
+    <tr><th>Schema</th><th>Structure</th><th>Pros</th><th>Cons</th></tr>
+    <tr><td><strong>Star</strong></td><td>One central fact table, multiple denormalized dimension tables</td><td>Simple queries, fast performance</td><td>Data redundancy</td></tr>
+    <tr><td><strong>Snowflake</strong></td><td>Fact table + normalized dimension tables (dimensions split into sub-dims)</td><td>Less redundancy, saves space</td><td>Complex joins, slower queries</td></tr>
+    <tr><td><strong>Constellation (Galaxy)</strong></td><td>Multiple fact tables sharing dimension tables</td><td>Models complex business</td><td>Most complex</td></tr>
+  </table>
+
+  <h3>ROLAP vs MOLAP vs HOLAP</h3>
+  <table>
+    <tr><th></th><th>ROLAP</th><th>MOLAP</th><th>HOLAP</th></tr>
+    <tr><td><strong>Storage</strong></td><td>Relational DB</td><td>Multidimensional cube</td><td>Both (hybrid)</td></tr>
+    <tr><td><strong>Data size</strong></td><td>Large</td><td>Limited</td><td>Large</td></tr>
+    <tr><td><strong>Performance</strong></td><td>Slower</td><td>Fastest</td><td>Good</td></tr>
+    <tr><td><strong>Example</strong></td><td>Oracle ROLAP</td><td>Essbase, SSAS</td><td>SSAS in HOLAP mode</td></tr>
+  </table>
+
+  <h3>KDD Process (Knowledge Discovery in Databases)</h3>
+  <div class="orange-flow">
+    <div class="obox blue">Data Sources</div>
+    <span class="arrow">→</span>
+    <div class="obox">Selection</div>
+    <span class="arrow">→</span>
+    <div class="obox">Preprocessing<br><small>Clean &amp; Integrate</small></div>
+    <span class="arrow">→</span>
+    <div class="obox">Transformation</div>
+    <span class="arrow">→</span>
+    <div class="obox purple">Data Mining</div>
+    <span class="arrow">→</span>
+    <div class="obox green">Interpretation<br>&amp; Evaluation</div>
+    <span class="arrow">→</span>
+    <div class="obox green">Knowledge</div>
+  </div>
+  <div class="note" style="margin-top:0.8rem"><strong>Remember:</strong> Data Mining is just ONE step in the KDD process, not the entire process.</div>
+
+  <h3>Data Preprocessing Techniques</h3>
+  <div class="card-grid">
+    <div class="card"><h4>Data Cleaning</h4><ul><li>Handle missing values: remove, mean/median/mode imputation</li><li>Remove noise: binning, regression, clustering-based</li><li>Resolve inconsistencies</li></ul></div>
+    <div class="card"><h4>Data Integration</h4><ul><li>Combine data from multiple sources</li><li>Handle entity identification problem</li><li>Resolve attribute/value conflicts</li></ul></div>
+    <div class="card"><h4>Data Transformation</h4><ul><li>Normalization: min-max, z-score</li><li>Aggregation: sum, count, max</li><li>Discretization: binning</li><li>Attribute construction</li></ul></div>
+    <div class="card"><h4>Data Reduction</h4><ul><li>Dimensionality reduction: PCA</li><li>Numerosity reduction: sampling, clustering</li><li>Feature selection</li><li>Data compression</li></ul></div>
+  </div>
+
+  <h3>Clustering Methods</h3>
+  <div class="card-grid">
+    <div class="card"><h4>Partitioning (k-Means)</h4><p>Divide n objects into k non-overlapping clusters. Each object belongs to exactly one cluster. Minimize intra-cluster distance.</p><p><strong>Algo:</strong> Choose k centroids → assign points → recompute centroids → repeat.</p></div>
+    <div class="card"><h4>Hierarchical</h4><p>Build a dendrogram tree. <strong>Agglomerative</strong> (bottom-up): each point starts as its own cluster, merge closest pairs. <strong>Divisive</strong> (top-down): start with one cluster, split.</p></div>
+    <div class="card"><h4>Density-Based (DBSCAN)</h4><p>Clusters are dense regions separated by sparse regions. Handles arbitrary shapes. Classifies points as Core, Border, or Noise. Does not need k specified.</p></div>
+  </div>
+
+  <h3>Outlier Analysis</h3>
+  <div class="card-grid">
+    <div class="card"><h4>Types of Outliers</h4><ul><li><strong>Global outlier:</strong> Point far from all others (e.g., fraudulent transaction)</li><li><strong>Contextual outlier:</strong> Normal globally but abnormal in context (e.g., temperature 30°C in winter)</li><li><strong>Collective outlier:</strong> Individual points are normal but the group as a whole is abnormal</li></ul></div>
+    <div class="card"><h4>Detection Methods</h4><ul><li><strong>Statistical:</strong> Z-score, IQR method (Q1-1.5×IQR to Q3+1.5×IQR)</li><li><strong>Distance-based:</strong> Point with few neighbors within distance d is outlier</li><li><strong>Density-based:</strong> LOF (Local Outlier Factor) – compare local density to neighbors</li><li><strong>Model-based:</strong> Isolation Forest, One-class SVM</li></ul></div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 7: VIVA UNIT 1 -->
+<!-- ============================================================ -->
+<section id="viva1">
+  <h2>📚 Viva Q&amp;A – Unit I: Data Warehouse &amp; OLAP</h2>
+  <span class="section-label">Unit 1</span>
+
+  <div class="qa-block">
+    <div class="question"><span>Q1.</span> What is a Data Warehouse? How is it different from a database?</div>
+    <div class="answer">A Data Warehouse is a subject-oriented, integrated, time-variant, and non-volatile collection of data used to support management decision-making (Inmon's definition).
+    <br><br>
+    <strong>4 characteristics (W.H. Inmon):</strong><br>
+    • <strong>Subject-oriented:</strong> Organized around major subjects like sales, customers (not processes)<br>
+    • <strong>Integrated:</strong> Data from multiple heterogeneous sources, consistent naming and encoding<br>
+    • <strong>Time-variant:</strong> Data is stored over time; changes are tracked<br>
+    • <strong>Non-volatile:</strong> Data is not updated or deleted; only loaded and accessed
+    <br><br>
+    Key difference from OLTP: DW is for analysis (OLAP); OLTP databases handle day-to-day transactions.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question"><span>Q2.</span> What is a Fact Table? What is a Dimension Table?</div>
+    <div class="answer"><strong>Fact Table:</strong> The central table in a star schema. Contains quantitative measurements (facts) like sales_amount, quantity_sold, and foreign keys to dimension tables. Typically large (millions of rows).<br><br>
+    <strong>Dimension Table:</strong> Describes the dimensions along which facts are measured. Contains descriptive attributes. Examples: Time dimension (year, quarter, month), Product dimension (name, category, brand), Location dimension (city, state, country).<br><br>
+    <em>Example: A sales fact table has sales_amount (fact) + FK to Date_dim, Product_dim, Store_dim.</em></div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question"><span>Q3.</span> Explain Star, Snowflake, and Galaxy schemas with examples.</div>
+    <div class="answer"><strong>Star Schema:</strong> Central fact table directly connected to denormalized dimension tables. Shape resembles a star. Simple and fast queries. Used in most OLAP systems.<br><br>
+    <strong>Snowflake Schema:</strong> Fact table connected to normalized dimension tables (dimensions are split). E.g., Product_dim → Category_dim → Department_dim. Reduces redundancy but requires more joins.<br><br>
+    <strong>Galaxy/Constellation Schema:</strong> Multiple fact tables share dimension tables. Example: Sales fact table and Inventory fact table both share Product and Time dimensions. Models complex enterprises.<br><br>
+    <em>For churn: Customer_dim, Service_dim, Time_dim → Churn_fact table would be a Star Schema.</em></div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question"><span>Q4.</span> What is Metadata in a Data Warehouse? Why is it important?</div>
+    <div class="answer">Metadata is "data about data." In a DW, it describes the structure, origin, and meaning of data.<br><br>
+    <strong>Types:</strong><br>
+    • <strong>Technical metadata:</strong> Database schemas, data types, transformations applied<br>
+    • <strong>Business metadata:</strong> Business rules, KPI definitions, report descriptions<br>
+    • <strong>Operational metadata:</strong> Data lineage, loading schedules, performance info<br><br>
+    <strong>Importance:</strong> Without metadata, analysts can't understand what the data means, where it came from, or how it was transformed. It's the "map" of the DW.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question"><span>Q5.</span> What is OLAP? Explain all OLAP operations with examples.</div>
+    <div class="answer">OLAP (Online Analytical Processing) allows analysts to interactively analyze multidimensional data from multiple perspectives.<br><br>
+    <strong>Operations:</strong><br>
+    • <strong>Roll-up:</strong> Summarize up hierarchy → City → State → Country<br>
+    • <strong>Drill-down:</strong> Add detail → Year → Quarter → Month → Day<br>
+    • <strong>Slice:</strong> Fix one dimension value → filter Time = Q1 only<br>
+    • <strong>Dice:</strong> Fix multiple dimension values → Time ∈ {Q1,Q2} AND Location ∈ {Delhi, Mumbai}<br>
+    • <strong>Pivot/Rotate:</strong> Reorient the 3D cube to see from a different angle, like switching rows/columns</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question"><span>Q6.</span> Difference between ROLAP, MOLAP, and HOLAP?</div>
+    <div class="answer"><strong>ROLAP (Relational OLAP):</strong> Stores data in relational tables. Good for large data volumes. Slower performance but scalable.<br><br>
+    <strong>MOLAP (Multidimensional OLAP):</strong> Pre-aggregates data into multidimensional cubes (arrays). Very fast queries. Limited data size. Pre-computation needed.<br><br>
+    <strong>HOLAP (Hybrid OLAP):</strong> Combines ROLAP and MOLAP. Summary data stored in cubes (fast), detail data in relational (scalable). Best of both worlds.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question"><span>Q7.</span> What is a Data Cube? What are its operations?</div>
+    <div class="answer">A Data Cube is an n-dimensional representation of data. For example, a 3D cube with axes: Product, Location, Time — each cell contains a measure like sales_amount.<br><br>
+    In practice, we often have more than 3 dimensions (hypercube). Operations include roll-up, drill-down, slice, dice, and pivot. The cube allows pre-computation of aggregations at all levels.<br><br>
+    <strong>Cuboids:</strong> A data cube with n dimensions has 2ⁿ cuboids (all possible aggregation combinations).</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 8: VIVA UNIT 2 -->
+<!-- ============================================================ -->
+<section id="viva2">
+  <h2>📚 Viva Q&amp;A – Unit II: Data Mining &amp; Preprocessing</h2>
+  <span class="section-label">Unit 2</span>
+
+  <div class="qa-block">
+    <div class="question"><span>Q1.</span> What is Data Mining? What are its functionalities?</div>
+    <div class="answer">Data Mining is the process of extracting useful, previously unknown, and potentially actionable patterns from large datasets. It is one step in the KDD process.<br><br>
+    <strong>Functionalities:</strong><br>
+    • <strong>Characterization &amp; Discrimination:</strong> Describe/compare target class vs others<br>
+    • <strong>Association:</strong> Find correlations (if-then rules)<br>
+    • <strong>Classification:</strong> Learn a model to predict class labels<br>
+    • <strong>Regression:</strong> Predict continuous values<br>
+    • <strong>Clustering:</strong> Group similar objects without labels<br>
+    • <strong>Outlier Analysis:</strong> Find exceptional cases<br>
+    • <strong>Evolution Analysis:</strong> Model time-related changes</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question"><span>Q2.</span> Explain the KDD Process. How is it different from Data Mining?</div>
+    <div class="answer">KDD = Knowledge Discovery in Databases. It is the complete process of turning raw data into knowledge.<br><br>
+    <strong>Steps:</strong><br>
+    1. <strong>Data Selection:</strong> Choose relevant data from data sources<br>
+    2. <strong>Preprocessing:</strong> Clean, handle missing values, noise removal<br>
+    3. <strong>Transformation:</strong> Normalize, discretize, aggregate features<br>
+    4. <strong>Data Mining:</strong> Apply algorithms (classification, clustering, etc.)<br>
+    5. <strong>Interpretation/Evaluation:</strong> Evaluate patterns; only keep interesting ones<br>
+    6. <strong>Knowledge:</strong> Present discovered knowledge to users<br><br>
+    <strong>Difference:</strong> Data Mining is step 4 — just the algorithmic part. KDD is the entire process from raw data to knowledge.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question"><span>Q3.</span> What are Data Objects and Attributes? What types of attributes exist?</div>
+    <div class="answer"><strong>Data Objects:</strong> Individual instances/records in a dataset (rows). Also called samples, examples, instances, observations.<br><br>
+    <strong>Attributes:</strong> Features/variables describing data objects (columns).<br><br>
+    <strong>Attribute Types:</strong><br>
+    • <strong>Nominal:</strong> Categorical, no order. (Gender, Color, Country)<br>
+    • <strong>Ordinal:</strong> Ordered categories, distance not meaningful. (Grade: A &gt; B &gt; C)<br>
+    • <strong>Interval:</strong> Ordered, equal intervals, no true zero. (Temperature in °C, Year)<br>
+    • <strong>Ratio:</strong> Ordered, equal intervals, true zero. (Weight, Height, Income, Age)</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question"><span>Q4.</span> What are the Data Preprocessing techniques? Explain each briefly.</div>
+    <div class="answer"><strong>1. Data Cleaning:</strong> Fill missing values (mean/median/mode or remove), smooth noisy data (binning, regression), remove duplicates, fix inconsistencies.<br><br>
+    <strong>2. Data Integration:</strong> Combine data from multiple sources. Handle schema matching, entity identification. Remove redundant attributes (check correlation). Resolve value conflicts.<br><br>
+    <strong>3. Data Transformation:</strong><br>
+    • Normalization: Min-Max → [0,1]; Z-score → mean=0, std=1<br>
+    • Discretization: Bin continuous → categories<br>
+    • Aggregation: Combine values<br>
+    • Attribute construction: Create new features<br><br>
+    <strong>4. Data Reduction:</strong><br>
+    • Dimensionality reduction (PCA, feature selection)<br>
+    • Numerosity reduction (sampling, histograms)<br>
+    • Data compression</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question"><span>Q5.</span> OLAP vs Data Mining — what's the difference?</div>
+    <div class="answer">
+    <table>
+      <tr><th>Aspect</th><th>OLAP</th><th>Data Mining</th></tr>
+      <tr><td>Purpose</td><td>Confirm hypotheses (verification)</td><td>Discover new patterns (discovery)</td></div>
+      <tr><td>User</td><td>Business analysts</td><td>Data scientists</td></tr>
+      <tr><td>Query</td><td>User-driven SQL queries</td><td>Algorithm-driven pattern search</td></tr>
+      <tr><td>Results</td><td>Aggregated numbers/reports</td><td>Models, rules, patterns</td></tr>
+      <tr><td>Example</td><td>"What were Q1 sales by region?"</td><td>"What factors predict customer churn?"</td></tr>
+    </table>
+    </div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question"><span>Q6.</span> What are the different ways to handle missing values?</div>
+    <div class="answer">
+    1. <strong>Ignore the tuple:</strong> Remove rows with missing values. Only works if missing % is small.<br>
+    2. <strong>Fill manually:</strong> Time-consuming, not practical for large data.<br>
+    3. <strong>Fill with global constant:</strong> Replace with "Unknown" or 0. Simple but can mislead.<br>
+    4. <strong>Fill with attribute mean/median:</strong> Good for numeric data.<br>
+    5. <strong>Fill with class-conditional mean:</strong> Mean for the specific class. Better than global mean.<br>
+    6. <strong>Use most probable value:</strong> Regression or Bayesian-based inference. Most sophisticated.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 9: VIVA UNIT 3 -->
+<!-- ============================================================ -->
+<section id="viva3">
+  <h2>📚 Viva Q&amp;A – Unit III: Classification &amp; Association</h2>
+  <span class="section-label">Unit 3</span>
+
+  <div class="qa-block">
+    <div class="question"><span>Q1.</span> What is classification? How is it different from clustering?</div>
+    <div class="answer"><strong>Classification:</strong> Supervised learning — predicts a categorical class label for new instances based on a model trained on labeled data.<br><br>
+    <strong>Clustering:</strong> Unsupervised learning — groups similar instances without predefined labels.<br><br>
+    <strong>Key difference:</strong> Classification requires labeled training data; clustering does not. Classification predicts a known set of classes; clustering discovers natural groupings.<br><br>
+    <em>Example: Classification → predict if email is spam/not-spam. Clustering → group customers by purchasing behavior.</em></div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question"><span>Q2.</span> How does a Decision Tree work? What is Information Gain?</div>
+    <div class="answer">A Decision Tree recursively splits the dataset using the feature that provides the most information gain at each node, until leaves are pure or stopping criteria is met.<br><br>
+    <strong>Information Gain:</strong> Measures the reduction in entropy after splitting on attribute A:<br>
+    IG(A) = Entropy(S) − Σ (|S_v|/|S|) × Entropy(S_v)<br><br>
+    <strong>Entropy:</strong> H(S) = −Σ p_i × log₂(p_i). Entropy=0 means pure node (all same class). Entropy=1 (for binary) means perfectly mixed.<br><br>
+    The attribute with highest IG is chosen for the split. This is the ID3 algorithm. CART uses Gini Index instead.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question"><span>Q3.</span> Explain Naive Bayes Classification with an example.</div>
+    <div class="answer">Naive Bayes applies Bayes' theorem assuming all features are conditionally independent given the class:<br><br>
+    P(C|X) ∝ P(C) × P(x₁|C) × P(x₂|C) × ... × P(xₙ|C)<br><br>
+    <strong>Example (Spam detection):</strong><br>
+    P(spam|"free money") ∝ P(spam) × P("free"|spam) × P("money"|spam)<br>
+    P(notSpam|"free money") ∝ P(notSpam) × P("free"|notSpam) × P("money"|notSpam)<br>
+    → Assign the class with higher posterior probability.<br><br>
+    <strong>Laplace smoothing</strong> is used to avoid zero probability for words not seen in training.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question"><span>Q4.</span> What is Backpropagation? How does it train a Neural Network?</div>
+    <div class="answer">Backpropagation is the algorithm used to train neural networks by computing gradients of the loss function with respect to each weight using the chain rule of calculus.<br><br>
+    <strong>Steps:</strong><br>
+    1. <strong>Forward pass:</strong> Feed input through the network, compute predictions<br>
+    2. <strong>Compute loss:</strong> Compare prediction to actual label (e.g., Cross-Entropy)<br>
+    3. <strong>Backward pass:</strong> Propagate error backwards through layers using chain rule to find ∂Loss/∂w for each weight<br>
+    4. <strong>Update weights:</strong> w = w − α × ∂Loss/∂w (gradient descent, α = learning rate)<br>
+    5. Repeat for all batches/epochs until convergence</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question"><span>Q5.</span> What is Model Evaluation? Explain the metrics used.</div>
+    <div class="answer"><strong>Accuracy (CA):</strong> (TP+TN)/Total. Proportion of correct predictions. Can be misleading for imbalanced data.<br><br>
+    <strong>Precision:</strong> TP/(TP+FP). Of predicted positives, how many are correct. Important when FP is costly.<br><br>
+    <strong>Recall (Sensitivity):</strong> TP/(TP+FN). Of actual positives, how many we caught. Important when FN is costly.<br><br>
+    <strong>F1 Score:</strong> 2×P×R/(P+R). Harmonic mean. Use when you need balance between P and R.<br><br>
+    <strong>AUC-ROC:</strong> Area under the ROC curve (TPR vs FPR). Model-threshold independent. AUC=1.0 is perfect, 0.5 is random.<br><br>
+    <strong>Cross-Validation:</strong> k-fold CV: split data into k folds, train on k-1, test on 1, average results. More reliable than single split.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question"><span>Q6.</span> What is Association Rule Mining? Explain Support, Confidence, and Lift.</div>
+    <div class="answer">Association Rule Mining finds interesting relationships between variables in large databases. Originally proposed for market basket analysis.<br><br>
+    Rule format: A → B (if A is bought, B is also bought)<br><br>
+    <strong>Support(A→B):</strong> Fraction of transactions containing both A and B. Measures rule's frequency. Low support = rare rule.<br>
+    <strong>Confidence(A→B):</strong> P(B|A) = Support(A∪B)/Support(A). Reliability of the rule. High confidence = rule is often correct.<br>
+    <strong>Lift(A→B):</strong> Confidence(A→B)/Support(B). Measures actual association vs random chance. Lift&gt;1 means positive association. Use Lift to filter spurious rules (high confidence rules about very common items).</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question"><span>Q7.</span> Compare Apriori and FP-Growth algorithms.</div>
+    <div class="answer"><strong>Apriori:</strong> Uses level-wise (BFS) search and candidate generation. Property: If itemset X is infrequent, all supersets of X are infrequent (Antimonotone property). Requires multiple DB scans (k scans for k-itemsets). Can generate huge candidate sets.<br><br>
+    <strong>FP-Growth:</strong> Compresses the DB into an FP-Tree in 2 scans. No candidate generation. Mines patterns by building conditional FP-trees for each item. Much faster on large datasets.<br><br>
+    <strong>When to use Apriori:</strong> Simple to implement, works when data is small and sparse.<br>
+    <strong>When to use FP-Growth:</strong> Large dense datasets, when speed matters.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question"><span>Q8.</span> What is Overfitting? How do you prevent it in Decision Trees?</div>
+    <div class="answer"><strong>Overfitting:</strong> Model learns the training data too well (including noise) and performs poorly on unseen test data. High training accuracy, low test accuracy.<br><br>
+    <strong>Prevention in Decision Trees:</strong><br>
+    1. <strong>Pre-pruning (Early Stopping):</strong> Stop growing tree when splits are not statistically significant, or when node has fewer than min_samples, or max_depth reached.<br>
+    2. <strong>Post-pruning:</strong> Grow full tree then prune back branches that don't improve validation accuracy.<br>
+    3. <strong>Use ensemble methods:</strong> Random Forest averages many trees, reducing overfitting variance.</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 10: VIVA UNIT 4 -->
+<!-- ============================================================ -->
+<section id="viva4">
+  <h2>📚 Viva Q&amp;A – Unit IV: Clustering &amp; Outlier Analysis</h2>
+  <span class="section-label">Unit 4</span>
+
+  <div class="qa-block">
+    <div class="question"><span>Q1.</span> What is Cluster Analysis? What are its applications?</div>
+    <div class="answer">Cluster Analysis groups data objects such that objects within a cluster are similar to each other and dissimilar to objects in other clusters. It is an unsupervised learning technique — no class labels needed.<br><br>
+    <strong>Applications:</strong><br>
+    • Customer segmentation (group customers by behavior)<br>
+    • Document clustering (group similar news articles)<br>
+    • Image segmentation (group similar pixels)<br>
+    • Anomaly detection (outlier points don't belong to any cluster)<br>
+    • Biology (classify genes with similar expression patterns)<br>
+    • City planning (group houses by type, value, location)</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question"><span>Q2.</span> Explain K-Means clustering algorithm step by step.</div>
+    <div class="answer">K-Means is a partitioning method that divides n objects into k clusters.<br><br>
+    <strong>Algorithm:</strong><br>
+    1. Choose k (number of clusters) and initialize k centroids randomly<br>
+    2. <strong>Assignment step:</strong> Assign each data point to the nearest centroid (Euclidean distance)<br>
+    3. <strong>Update step:</strong> Recompute each centroid as the mean of all points assigned to it<br>
+    4. Repeat steps 2–3 until centroids don't change (convergence)<br><br>
+    <strong>Limitations:</strong><br>
+    • Must specify k in advance<br>
+    • Sensitive to initial centroid placement (can converge to local minimum)<br>
+    • Assumes spherical clusters of similar size<br>
+    • Sensitive to outliers</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question"><span>Q3.</span> What is Hierarchical Clustering? Difference between Agglomerative and Divisive?</div>
+    <div class="answer">Hierarchical clustering creates a tree of clusters (dendrogram) — no need to pre-specify k.<br><br>
+    <strong>Agglomerative (bottom-up):</strong><br>
+    1. Start: each data point is its own cluster<br>
+    2. Find the two closest clusters<br>
+    3. Merge them into one cluster<br>
+    4. Repeat until one cluster remains (or k clusters remain)<br><br>
+    <strong>Divisive (top-down):</strong><br>
+    1. Start: all data in one cluster<br>
+    2. Split cluster into two most dissimilar groups<br>
+    3. Repeat recursively until each object is in its own cluster<br><br>
+    <strong>Linkage methods (for distance between clusters):</strong> Single linkage (min distance), Complete linkage (max distance), Average linkage, Centroid linkage.<br><br>
+    <strong>Advantage over K-Means:</strong> No need to specify k; provides full hierarchy.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question"><span>Q4.</span> Explain DBSCAN. How does it handle noise?</div>
+    <div class="answer">DBSCAN (Density-Based Spatial Clustering of Applications with Noise) defines clusters as dense regions separated by low-density regions.<br><br>
+    <strong>Parameters:</strong> ε (epsilon = radius), MinPts (minimum points in ε-neighborhood)<br><br>
+    <strong>Point types:</strong><br>
+    • <strong>Core point:</strong> Has ≥ MinPts points within ε radius (including itself)<br>
+    • <strong>Border point:</strong> In ε-neighborhood of a core point but has fewer than MinPts neighbors<br>
+    • <strong>Noise point (outlier):</strong> Neither core nor border point<br><br>
+    <strong>Algorithm:</strong> Start from an unvisited core point → expand cluster by adding all density-reachable points → noise points are not added to any cluster.<br><br>
+    <strong>Advantages:</strong> Finds arbitrarily shaped clusters, handles noise naturally (noise = outliers), no need to specify k. <strong>Weakness:</strong> Struggles with varying density clusters.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question"><span>Q5.</span> How do you evaluate the quality of clusters?</div>
+    <div class="answer"><strong>Internal measures (no ground truth needed):</strong><br>
+    • <strong>Silhouette Score:</strong> For each point, s = (b−a)/max(a,b) where a=intra-cluster distance, b=nearest inter-cluster distance. Score ∈ [-1,1]; closer to 1 = better. Overall = mean of all points.<br>
+    • <strong>Davies-Bouldin Index:</strong> Lower = better. Ratio of within-cluster scatter to between-cluster separation.<br>
+    • <strong>Dunn Index:</strong> Higher = better. Ratio of minimum inter-cluster distance to maximum intra-cluster distance.<br><br>
+    <strong>External measures (with ground truth labels):</strong><br>
+    • Purity, Rand Index, Normalized Mutual Information<br><br>
+    <strong>Elbow Method:</strong> Plot within-cluster sum of squares (WCSS) vs k → choose k where the curve "elbows" (improvement slows down).</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question"><span>Q6.</span> What are the types of outliers? How are they detected?</div>
+    <div class="answer"><strong>Types:</strong><br>
+    • <strong>Global outlier:</strong> Object that deviates significantly from the entire dataset. Example: person with salary ₹1 crore when average is ₹5 lakh.<br>
+    • <strong>Contextual (conditional) outlier:</strong> Object abnormal given a context. Example: 30°C temperature in December is abnormal in Delhi but normal in Chennai.<br>
+    • <strong>Collective outlier:</strong> Individual objects are not outliers but a group together forms an outlier. Example: a set of ECG readings that individually look normal but collectively indicate an arrhythmia.<br><br>
+    <strong>Detection Methods:</strong><br>
+    1. <strong>Statistical:</strong> Z-score (|x-μ|/σ &gt; 3), Grubbs test, IQR method<br>
+    2. <strong>Distance-based:</strong> A point is an outlier if fewer than p points are within distance d<br>
+    3. <strong>Density-based:</strong> LOF (Local Outlier Factor) — compare local density of point to its k nearest neighbors<br>
+    4. <strong>Isolation Forest:</strong> Anomalies are isolated quickly in random trees<br>
+    5. <strong>Clustering-based:</strong> Points not assigned to any cluster (DBSCAN noise points) = outliers</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question"><span>Q7.</span> What are the challenges of outlier detection?</div>
+    <div class="answer">1. <strong>Definition problem:</strong> Hard to define "abnormal" — boundary between outlier and normal is not crisp<br>
+    2. <strong>High dimensionality:</strong> In high dimensions, the concept of distance becomes less meaningful (curse of dimensionality)<br>
+    3. <strong>Data labels:</strong> Often no labeled examples of outliers (unsupervised problem)<br>
+    4. <strong>Noise vs outlier:</strong> Distinguishing meaningful outliers from random noise is difficult<br>
+    5. <strong>Masking and swamping:</strong> Multiple outliers can mask each other or cause non-outliers to appear as outliers<br>
+    6. <strong>Dynamic data:</strong> What is normal changes over time (concept drift)</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 11: VIVA PRACTICAL -->
+<!-- ============================================================ -->
+<section id="vivap">
+  <h2>🛠️ Viva Q&amp;A – Practical Based (Orange Tool)</h2>
+  <span class="section-label">Practical</span>
+
+  <div class="qa-block">
+    <div class="question"><span>Q1.</span> What dataset did you use? Why is it suitable for churn prediction?</div>
+    <div class="answer">I used the Telecom Customer Churn dataset (IBM Watson dataset / Kaggle). It contains 7043 customer records with 20 features including demographics, services subscribed, and account information. The target variable is "Churn" (binary: Yes/No).<br><br>
+    It's suitable because: (1) It has a clear binary target for classification, (2) It contains both categorical and numerical features testing real-world preprocessing, (3) It has ~26% churn rate — slight class imbalance making it realistic, (4) Features have intuitive business meaning.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question"><span>Q2.</span> Why did you normalize the data before applying Neural Network?</div>
+    <div class="answer">Neural Networks are sensitive to feature scale because weights are updated proportionally to gradients. If MonthlyCharges (range: 18-118) and SeniorCitizen (range: 0-1) are on different scales, the gradient for MonthlyCharges will dominate and slow convergence or cause poor performance.<br><br>
+    Normalization brings all features to the same scale [0,1] (Min-Max) or mean=0, std=1 (Z-score), ensuring equal contribution from all features and faster, more stable training. Decision Trees and Random Forests don't need scaling because they use threshold comparisons, not distances.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question"><span>Q3.</span> Which model performed best and why?</div>
+    <div class="answer">Random Forest achieved the highest AUC (0.84) and best F1 score in my experiments.<br><br>
+    Reasons: (1) It's an ensemble method — averages 100s of decision trees trained on different data subsets (bagging) and different feature subsets, reducing variance while maintaining low bias. (2) It handles both numerical and categorical features well. (3) It's robust to overfitting that plagued the single Decision Tree. (4) Neural Network was close but requires more data and tuning to outperform Random Forest on tabular data.<br><br>
+    For production deployment, I would choose Random Forest because of its accuracy, robustness, and built-in feature importance.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question"><span>Q4.</span> What does AUC = 0.84 mean exactly?</div>
+    <div class="answer">AUC (Area Under the ROC Curve) of 0.84 means: if I take a random churning customer and a random non-churning customer, the model will correctly rank the churning customer as higher risk 84% of the time.<br><br>
+    ROC curve plots True Positive Rate (Recall) on y-axis vs False Positive Rate (FP/(FP+TN)) on x-axis at different classification thresholds. A perfect model has AUC=1.0 (top-left corner). A random model has AUC=0.5 (diagonal). AUC=0.84 indicates a good, practically useful model.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question"><span>Q5.</span> How did you set the minimum support and confidence in association mining? What values did you use?</div>
+    <div class="answer">I set minimum support = 0.1 (10%) and minimum confidence = 0.7 (70%).<br><br>
+    <strong>Reasoning:</strong><br>
+    • Support of 0.1 means the rule appears in at least 10% of transactions — frequent enough to be meaningful, not too restrictive.<br>
+    • If support is too high → too few rules (miss patterns). Too low → too many rules (many spurious).<br>
+    • Confidence of 0.7 means the consequent appears 70% of the time when antecedent appears — strong enough rule.<br>
+    • After generating rules, I sorted by Lift descending to find the most interesting rules (Lift &gt; 1 = genuinely associated, not just common items).</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question"><span>Q6.</span> What is the difference between Support and Confidence? Why is Lift more useful?</div>
+    <div class="answer">Support measures how frequently an itemset appears — it's about frequency. Confidence measures how often the rule is correct — it's about reliability.<br><br>
+    <strong>Why Lift is more useful:</strong> Consider a rule "A → Milk" where Milk appears in 95% of all transactions. Then:<br>
+    • Support(A→Milk) = 0.50 (seems good)<br>
+    • Confidence(A→Milk) = 0.90 (seems great!)<br>
+    • But Support(Milk) = 0.95<br>
+    • Lift = 0.90/0.95 = 0.95 &lt; 1 → A actually REDUCES probability of buying Milk!<br><br>
+    Lift corrects for the base rate of the consequent. Lift=1 means independent, Lift&gt;1 means genuine positive association, Lift&lt;1 means negative association. Always filter rules with Lift&gt;1.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question"><span>Q7.</span> How does the Test and Score widget work in Orange?</div>
+    <div class="answer">Test and Score evaluates multiple models simultaneously using the same data and same cross-validation strategy, ensuring fair comparison.<br><br>
+    <strong>How it works:</strong><br>
+    1. Receives data from one connection (the dataset)<br>
+    2. Receives multiple learners (model algorithms) from separate connections<br>
+    3. Performs k-fold cross-validation (default k=10): splits data into 10 parts, trains on 9 and tests on 1, repeated 10 times<br>
+    4. Computes metrics (AUC, CA, F1, Precision, Recall) for each fold and averages them<br>
+    5. Displays all models side-by-side for comparison<br><br>
+    The key advantage is that all models are evaluated on the same folds, making comparison fair.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question"><span>Q8.</span> What is Random Forest and how does it differ from a single Decision Tree?</div>
+    <div class="answer">Random Forest builds many decision trees (e.g., 100-500) each on a random bootstrap sample (sampling with replacement) of the training data, and at each split considers only a random subset of √m features (m = total features).<br><br>
+    <strong>Differences from single Decision Tree:</strong><br>
+    • <strong>Variance:</strong> Single tree has high variance (slight data change = very different tree). RF averages many diverse trees → much lower variance.<br>
+    • <strong>Overfitting:</strong> Single trees easily overfit. RF's averaging prevents this.<br>
+    • <strong>Accuracy:</strong> RF almost always outperforms a single tree.<br>
+    • <strong>Interpretability:</strong> Single tree is visually interpretable. RF is a "black box".<br>
+    • <strong>Speed:</strong> Single tree is faster. RF is slower (but parallelizable).<br><br>
+    The key insight is: individual trees may be weak but their diverse errors cancel out in aggregation.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question"><span>Q9.</span> What preprocessing steps did you perform and why?</div>
+    <div class="answer">1. <strong>Set Target Variable:</strong> Used Edit Domain to mark "Churn" as target, CustomerID as meta (to exclude from training).<br><br>
+    2. <strong>Handle Missing Values:</strong> TotalCharges had some missing values → imputed with mean using Impute widget.<br><br>
+    3. <strong>Normalize Features:</strong> Applied Min-Max normalization via Preprocess widget — critical for Neural Network (distance-based), good practice for others too.<br><br>
+    4. <strong>Encode Categoricals:</strong> Orange handles most categorical encoding automatically, but I verified with Continuize widget for algorithms that require numeric input.<br><br>
+    Why: Raw data is rarely ready for mining — missing values cause errors, different scales cause bias, wrong roles (like ID as feature) corrupt the model.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question"><span>Q10.</span> What is the FP-Tree? How is it built?</div>
+    <div class="answer">An FP-Tree (Frequent Pattern Tree) is a compact representation of all transactions, storing only frequent items.<br><br>
+    <strong>Construction:</strong><br>
+    1. Scan DB once → count frequency of all items → remove items below min_support → sort remaining items by frequency descending → this is the F-list (header table)<br>
+    2. Scan DB a second time → for each transaction: remove infrequent items, sort remaining by F-list order, insert into FP-Tree as a branch (nodes with same prefix share branches)<br><br>
+    <strong>Structure:</strong> Root node (null) → branches = transactions. Each node stores: item name, count (how many transactions share this path), and pointer to next node of same item in header table.<br><br>
+    <strong>Mining:</strong> For each item in header table (from least frequent to most): follow node links to find all prefix paths (conditional pattern base) → build conditional FP-tree → mine recursively.</div>
+  </div>
+
+  <!-- BONUS QUICK-FIRE -->
+  <h3>⚡ Quick-Fire Viva Questions (Short Answers)</h3>
+  <div class="card">
+    <details>
+      <summary>What is the Apriori Property / Antimonotone Property?</summary>
+      <div class="details-body">If an itemset is infrequent, ALL its supersets are also infrequent. This allows us to prune the search space — never generate candidates whose subsets are infrequent.</div>
+    </details>
+    <details>
+      <summary>What is Gini Index in Decision Trees?</summary>
+      <div class="details-body">Gini(S) = 1 − Σp_i². Used in CART algorithm. Measures impurity of a node. Gini=0 means pure node. Prefer splitting on attribute that minimizes weighted Gini of child nodes.</div>
+    </details>
+    <details>
+      <summary>What is the curse of dimensionality?</summary>
+      <div class="details-body">As the number of features increases, data becomes sparse in high-dimensional space. Distance metrics lose meaning, and exponentially more data is needed. Most data mining algorithms degrade with too many features → use feature selection or PCA.</div>
+    </details>
+    <details>
+      <summary>What is Bagging vs Boosting?</summary>
+      <div class="details-body">Bagging (Bootstrap Aggregating): Train multiple models independently on random subsets → average results. Random Forest uses bagging. Reduces variance. Boosting: Train models sequentially, each focusing on errors of previous. (e.g., AdaBoost, XGBoost). Reduces bias. Both are ensemble methods.</div>
+    </details>
+    <details>
+      <summary>Define: ETL in Data Warehouse context</summary>
+      <div class="details-body">ETL = Extract, Transform, Load. Extract data from source systems → Transform (clean, integrate, normalize, aggregate) → Load into data warehouse. ETL is the backbone of the DW population process.</div>
+    </details>
+    <details>
+      <summary>What is Dimension Reduction? Name a method.</summary>
+      <div class="details-body">Reducing the number of features while retaining most information. PCA (Principal Component Analysis) transforms features into orthogonal components ordered by variance explained. Feature selection (e.g., removing low-variance features, selecting top-k by correlation with target).</div>
+    </details>
+    <details>
+      <summary>What is a Frequent Itemset?</summary>
+      <div class="details-body">An itemset whose support ≥ min_support threshold. Example: if min_support = 30% and {bread, milk} appears in 40% of transactions, {bread, milk} is a frequent itemset.</div>
+    </details>
+    <details>
+      <summary>What is Recall and when should it be maximized?</summary>
+      <div class="details-body">Recall = TP/(TP+FN). The fraction of actual positives correctly identified. Maximize Recall when missing a positive is very costly — e.g., medical diagnosis (missing a disease), fraud detection (missing fraud), churn prediction (missing a churner who then leaves).</div>
+    </details>
+    <details>
+      <summary>What is the difference between supervised and unsupervised learning?</summary>
+      <div class="details-body">Supervised: Training data has labels (class/output known). Goal: learn a mapping from input to output. Examples: Classification, Regression. Unsupervised: No labels. Goal: find hidden structure. Examples: Clustering, Association Mining, Dimensionality Reduction.</div>
+    </details>
+    <details>
+      <summary>What widgets in Orange do you connect to compare models?</summary>
+      <div class="details-body">Connect multiple learner widgets (Tree, Naive Bayes, Random Forest, Neural Network) + the preprocessed data → all into Test and Score widget. Then connect Test and Score → Confusion Matrix (for per-class analysis) and → ROC Analysis (for AUC curve comparison).</div>
+    </details>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- LAST MINUTE TIPS -->
+<!-- ============================================================ -->
+<section>
+  <h2>🎯 Last-Minute Exam Tips</h2>
+  <div class="card-grid">
+    <div class="card">
+      <h4>In the Practical</h4>
+      <ul>
+        <li>Always set the target variable using Edit Domain FIRST</li>
+        <li>Always normalize before Neural Network</li>
+        <li>Use 10-fold cross validation in Test &amp; Score</li>
+        <li>For association: sort rules by Lift (descending) to find best</li>
+        <li>Show Confusion Matrix for detailed analysis</li>
+        <li>Use ROC Analysis to compare models visually</li>
+        <li>Be ready to explain what each widget does</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>In the Viva</h4>
+      <ul>
+        <li>Always mention Lift when discussing association rules</li>
+        <li>For "which model is best?" → mention AUC first, then F1 for imbalanced data</li>
+        <li>For "why Random Forest?" → mention ensemble, bagging, reduces overfitting</li>
+        <li>For "why normalize?" → mention Neural Network sensitivity to scale</li>
+        <li>KDD vs Data Mining → DM is just ONE step in KDD</li>
+        <li>OLAP vs Data Mining → OLAP verifies, DM discovers</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Magic Numbers to Remember</h4>
+      <ul>
+        <li>AUC = 1.0 → perfect model</li>
+        <li>AUC = 0.5 → random model</li>
+        <li>Lift &gt; 1 → positive association</li>
+        <li>Lift = 1 → independent</li>
+        <li>Entropy = 0 → pure node</li>
+        <li>F1 = 2PR/(P+R)</li>
+        <li>k=10 for cross-validation (standard)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Most Important Formulas</h4>
+      <ul>
+        <li>Support = freq(A∪B)/N</li>
+        <li>Confidence = Sup(A∪B)/Sup(A)</li>
+        <li>Lift = Conf(A→B)/Sup(B)</li>
+        <li>Entropy = -Σ p_i log₂(p_i)</li>
+        <li>IG = Entropy(S) - Σ|S_v|/|S|×Entropy(S_v)</li>
+        <li>Accuracy = (TP+TN)/Total</li>
+        <li>Recall = TP/(TP+FN)</li>
+        <li>Precision = TP/(TP+FP)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tip" style="text-align:center; padding: 1.5rem; margin-top:1rem;">
+    <strong style="font-size:1.1rem">Best of luck, Aman! 🚀</strong><br>
+    <span style="color:var(--muted)">You've got this. Remember: practical → set target first, normalize always, compare with AUC. Viva → explain concepts confidently, use examples, mention limitations.</span>
+  </div>
+</section>
+
+</div>
+
+<script>
+  // Highlight active nav on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 80) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  });
+</script>
+</body>
+</html>
